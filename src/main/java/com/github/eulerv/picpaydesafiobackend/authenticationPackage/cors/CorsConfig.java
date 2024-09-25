@@ -1,4 +1,4 @@
-package com.github.eulerv.picpaydesafiobackend.infra;
+package com.github.eulerv.picpaydesafiobackend.authenticationPackage.cors;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
