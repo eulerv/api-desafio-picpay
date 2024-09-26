@@ -3,7 +3,6 @@ package com.github.eulerv.picpaydesafiobackend.authenticationPackage.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-
 @Table("users")
 public class User {
     @Id
