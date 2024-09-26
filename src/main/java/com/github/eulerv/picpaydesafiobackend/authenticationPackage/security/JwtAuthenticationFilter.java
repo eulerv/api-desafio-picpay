@@ -2,8 +2,6 @@ package com.github.eulerv.picpaydesafiobackend.authenticationPackage.security;
 
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +13,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.github.eulerv.picpaydesafiobackend.authenticationPackage.service.JwtTokenUtil;
 import com.github.eulerv.picpaydesafiobackend.authenticationPackage.service.UserDetailsServiceImpl;
-import com.github.eulerv.picpaydesafiobackend.wallet.WalletController;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,7 +21,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    //private static final Logger LOG = LoggerFactory.getLogger(WalletController.class);
+    //private static final Logger LOG = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 

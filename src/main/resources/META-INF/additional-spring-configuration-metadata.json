@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "jwt.secret",
+  "type": "java.lang.String",
+  "description": "A simple (and non secure) jwt.secret, just for using in this portfolio."
+}]}
