@@ -13,6 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.github.eulerv.picpaydesafiobackend.authenticationPackage.service.JwtTokenUtil;
 import com.github.eulerv.picpaydesafiobackend.authenticationPackage.service.UserDetailsServiceImpl;
+import com.github.eulerv.picpaydesafiobackend.exception.InvalidTokenException;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -43,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try {
                 username = jwtTokenUtil.getUsernameFromToken(token);
             } catch (Exception e) {
-                logger.error("Não foi possível obter o username do token: {}" + e.getMessage());
+                throw new InvalidTokenException("Token inválido ou expirado.");
             }
         }
 

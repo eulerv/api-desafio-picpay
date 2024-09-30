@@ -25,7 +25,15 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/authenticate", "/signup").permitAll()
+                .requestMatchers(
+                    "/authenticate",
+                    "/signup",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**",
+                    "/swagger-resources/**",
+                    "/swagger-ui.html",
+                    "/webjars/**"
+                    ).permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session

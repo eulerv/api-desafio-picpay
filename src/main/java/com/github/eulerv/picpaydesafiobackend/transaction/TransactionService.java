@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.eulerv.picpaydesafiobackend.authorization.AuthorizerService;
+import com.github.eulerv.picpaydesafiobackend.exception.InvalidTransactionException;
 import com.github.eulerv.picpaydesafiobackend.wallet.Wallet;
 import com.github.eulerv.picpaydesafiobackend.wallet.WalletRepository;
 import com.github.eulerv.picpaydesafiobackend.wallet.WalletType;

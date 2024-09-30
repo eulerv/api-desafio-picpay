@@ -7,7 +7,6 @@ import org.springframework.data.relational.core.mapping.Table;
 public class User {
     @Id
     private Long id;
-
     private String username;
     private String password;
 

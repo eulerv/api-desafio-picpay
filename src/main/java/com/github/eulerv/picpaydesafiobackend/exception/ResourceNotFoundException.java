@@ -1,4 +1,4 @@
-package com.github.eulerv.picpaydesafiobackend.authenticationPackage.exception;
+package com.github.eulerv.picpaydesafiobackend.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

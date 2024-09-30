@@ -8,6 +8,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("wallets")
 public record Wallet(
         @Id Long id,
+        Long userId,
         String fullName,
         Long cpf,
         String email,
@@ -16,9 +17,9 @@ public record Wallet(
         BigDecimal balance) {
 
     public Wallet debit(BigDecimal value) {
-        return new Wallet(id, fullName, cpf, email, password, type, balance.subtract(value));
+        return new Wallet(id, userId, fullName, cpf, email, password, type, balance.subtract(value));
     }
     public Wallet credit(BigDecimal value) {
-        return new Wallet(id, fullName, cpf, email, password, type, balance.add(value));
+        return new Wallet(id, userId,fullName, cpf, email, password, type, balance.add(value));
     }
 }

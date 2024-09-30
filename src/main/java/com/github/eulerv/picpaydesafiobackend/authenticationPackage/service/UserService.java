@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.github.eulerv.picpaydesafiobackend.authenticationPackage.exception.UserAlreadyExistsException;
 import com.github.eulerv.picpaydesafiobackend.authenticationPackage.model.User;
 import com.github.eulerv.picpaydesafiobackend.authenticationPackage.repository.UserRepository;
+import com.github.eulerv.picpaydesafiobackend.exception.UserAlreadyExistsException;
 
 
 @Service
