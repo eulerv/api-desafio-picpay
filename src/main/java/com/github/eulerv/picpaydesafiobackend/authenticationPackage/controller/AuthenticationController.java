@@ -14,7 +14,7 @@ import com.github.eulerv.picpaydesafiobackend.authenticationPackage.service.JwtT
 
 @RestController
 @RequestMapping("/authenticate")
-@CrossOrigin(allowCredentials =  "*"  , methods = { RequestMethod.POST }  , maxAge = 3600)
+@CrossOrigin(allowCredentials =  "true"  , methods = { RequestMethod.POST, RequestMethod.OPTIONS })
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
