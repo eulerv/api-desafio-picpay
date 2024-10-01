@@ -7,6 +7,5 @@ RUN ./mvnw clean package -DskipTests
 
 # Etapa 2: Construir a imagem final
 FROM azul/zulu-openjdk:17-jre
-VOLUME /tmp
 COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
