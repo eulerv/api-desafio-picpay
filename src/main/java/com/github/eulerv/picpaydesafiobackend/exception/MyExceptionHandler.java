@@ -28,11 +28,14 @@ public class MyExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
+    @ExceptionHandler(UnableToRequestAuthorization.class)
+    public ResponseEntity<String> handleUnableToRequestAuthorization(UnableToRequestAuthorization ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception ex) {
-        // Aqui você pode adicionar logging se necessário
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Erro interno do servidor. Tente novamente mais tarde.");
     }
-
 }

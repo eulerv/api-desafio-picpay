@@ -22,18 +22,17 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    //private static final Logger LOG = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+    // private static final Logger LOG = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain)
-                                    throws ServletException, IOException {
+            HttpServletResponse response,
+            FilterChain filterChain)
+            throws ServletException, IOException {
 
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         String username = null;
@@ -51,12 +50,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtTokenUtil.validateToken(token, userDetails.getUsername())) {
-                UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication
-                    .setDetails(new WebAuthenticationDetailsSource()
-                    .buildDetails(request));
+                        .setDetails(new WebAuthenticationDetailsSource()
+                                .buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }

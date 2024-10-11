@@ -1,4 +1,5 @@
 package com.github.eulerv.picpaydesafiobackend.authenticationPackage.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +22,8 @@ public class AuthenticationController {
 
     @PostMapping
     public String authenticate(@RequestBody CredentialRequest credentialRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentialRequest.username(), credentialRequest.password()));
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(credentialRequest.username(), credentialRequest.password()));
         String token = jwtTokenUtil.generateToken(credentialRequest.username());
         return token;
     }

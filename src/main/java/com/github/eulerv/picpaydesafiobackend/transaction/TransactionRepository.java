@@ -9,7 +9,7 @@ import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface TransactionRepository extends ListCrudRepository<Transaction, Long> {
-        List<Transaction> findByUserId(Long userId);
+    List<Transaction> findByUserId(Long userId);
 
     Optional<Transaction> findByIdAndUserId(Long id, Long userId);
 

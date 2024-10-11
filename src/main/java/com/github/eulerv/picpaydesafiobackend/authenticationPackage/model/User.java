@@ -2,7 +2,9 @@ package com.github.eulerv.picpaydesafiobackend.authenticationPackage.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.stereotype.Component;
 
+@Component
 @Table("users")
 public class User {
     @Id
@@ -10,7 +12,6 @@ public class User {
     private String username;
     private String password;
 
-    // Construtores
     public User() {
     }
 

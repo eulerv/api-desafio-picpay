@@ -37,20 +37,38 @@ public class WalletController {
     @PostMapping
     public ResponseEntity<String> createWallet(@RequestBody Wallet wallet) {
         walletService.create(wallet);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Carteira criada com sucesso.");
+        return ResponseEntity.status(HttpStatus.CREATED)
+        .body(
+            "Carteira criada com sucesso." +
+            "Nome: " + wallet.fullName() +
+            ", CPF: " + wallet.cpf() +
+            ", Email: " + wallet.email() +
+            ", Senha: " + wallet.password() +
+            ", Tipo: " + wallet.type() +
+            ", Saldo: " + wallet.balance() +
+            ". Vá até a tela de GET para obter o id que foi instanciado. " +
+            "Obs: 'Userid' é o seu id, de quem está interagindo com a API. Foi a forma de multi-tenancy utilizada."
+            );
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateWallet(@RequestBody Wallet wallet, @PathVariable Long id) {
         walletService.update(wallet, id);
-        return ResponseEntity.ok("Carteira atualizada com sucesso.");
+        return ResponseEntity.ok(
+            "Carteira atualizada com sucesso." +
+            "id = " + id +  " - Nome: " + wallet.fullName() +
+            " - CPF: " + wallet.cpf() +
+            " - Email: " + wallet.email() +
+            " - Senha: " + wallet.password() +
+            " - Tipo: " + wallet.type() +
+            " - Saldo: " + wallet.balance()
+            );
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteWallet(@PathVariable Long id) {
         walletService.delete(id);
-        LOG.info("Método delete() chamado no Controller. Id:" + id);
-        return ResponseEntity.ok("Carteira excluída com sucesso.");
+        return ResponseEntity.ok("Carteira " + id + " excluída com sucesso.");
     }
 
     @DeleteMapping("/all")

@@ -29,6 +29,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS email_index ON wallets (email);
 CREATE TABLE
   IF NOT EXISTS transactions (
     id SERIAL PRIMARY KEY,
+    user_id BIGINT,
     payer INT,
     payee INT,
     "value" DECIMAL(10, 2),

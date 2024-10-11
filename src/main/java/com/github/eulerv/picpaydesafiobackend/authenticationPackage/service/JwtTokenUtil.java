@@ -12,9 +12,10 @@ import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtTokenUtil {
-    private String jwtSecret = "SuaChaveSecretaParaJWTQueDeveTerNoMinimo32Caracteres";
 
-    private final long expiration = 604800000L; // 7 dias em milissegundos
+    private String jwtSecret = "chavesecretadenominimo32caracteresachoquejatemquechega";
+
+    private final long expiration = 604800000L; // 7 dias em ms
 
     private Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
 

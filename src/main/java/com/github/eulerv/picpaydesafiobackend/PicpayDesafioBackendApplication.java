@@ -16,9 +16,9 @@ public class PicpayDesafioBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PicpayDesafioBackendApplication.class, args);
 	}
-	// Encripted password for user using BCrypt encoder
 	@Bean
 	ApplicationRunner runner(PasswordEncoder passwordEncoder) {
-		return args -> System.out.println(passwordEncoder.encode("123456"));
+		return args -> System.out.println(">>>>>>>>Application is running!<<<<<<<<");
+		//return args -> System.out.println(passwordEncoder.encode("123456"));
 	}
 }

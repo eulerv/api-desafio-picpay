@@ -24,15 +24,15 @@ public class DatabaseResetScheduler {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // Agendamento diário às 00:00
+    // Agendamento RESET diário às 02:00
     @Scheduled(cron = "0 0 2 * * ?", zone = "America/Sao_Paulo")
     public void resetDatabase() {
         transactionRepository.deleteAll();
         walletRepository.deleteAll();
         userRepository.deleteAll();
 
-        User user1 = new User("user", passwordEncoder.encode("123456"));
-        userRepository.save(user1);
+        User defaultUser = new User("user", passwordEncoder.encode("123456"));
+        userRepository.save(defaultUser);
         System.out.println("Banco de dados resetado com sucesso às 02:00.");
     }
 }

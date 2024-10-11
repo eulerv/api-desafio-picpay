@@ -65,7 +65,6 @@ public class WalletService {
 
     public void delete(Long id) {
         Long userId = getCurrentUserId();
-        LOG.info("Método delete() chamado no Service. Id:" + id + " - userId:" + userId);
         walletRepository.deleteByIdAndUserId(id, userId);
     }
 

@@ -17,8 +17,8 @@ public class Transaction {
     private Long payee;
     private BigDecimal value;
     
-    @CreatedDate
-    private LocalDateTime createdAt; // Essa notação faz com que date seja gerado automaticamente quando transactions for injetada.
+    @CreatedDate // Essa notação faz com que date seja gerado automaticamente quando transactions for injetada, com base no horário do servidor.
+    private LocalDateTime createdAt;
 
     // Construtor
     public Transaction(Long id, Long userId, Long payer, Long payee, BigDecimal value, LocalDateTime createdAt) {
@@ -30,7 +30,6 @@ public class Transaction {
         this.createdAt = createdAt;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -74,8 +73,6 @@ public class Transaction {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
-    // O setter de createdAt pode ser omitido se a data for gerada automaticamente
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }

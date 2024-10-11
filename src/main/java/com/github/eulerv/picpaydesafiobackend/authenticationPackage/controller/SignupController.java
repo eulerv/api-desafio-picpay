@@ -16,11 +16,11 @@ import com.github.eulerv.picpaydesafiobackend.authenticationPackage.service.User
 public class SignupController {
     @Autowired
     private UserService userService;
-    // @Autowired
-    // private EmailService emailService;
+
     @PostMapping
     public ResponseEntity<String> signup(@RequestBody CredentialRequest credentialRequest) {
         userService.registerUser(credentialRequest.username(), credentialRequest.password());
-        return ResponseEntity.status(HttpStatus.CREATED).body("Usuário registrado com sucesso!");
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Usuário registrado com sucesso! Prossiga com o login em \"/authenticate\".);");
     }
 }

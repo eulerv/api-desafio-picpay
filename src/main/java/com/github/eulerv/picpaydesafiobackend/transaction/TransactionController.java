@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("transactions")
+@RequestMapping(value = "transactions")
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -27,5 +27,4 @@ public class TransactionController {
         public List<Transaction> list() {
         return transactionService.list();
     }
-    
 }

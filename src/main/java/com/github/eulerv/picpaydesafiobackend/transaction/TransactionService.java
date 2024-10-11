@@ -2,6 +2,8 @@ package com.github.eulerv.picpaydesafiobackend.transaction;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import com.github.eulerv.picpaydesafiobackend.wallet.WalletType;
 
 @Service
 public class TransactionService {
+    private static final Logger LOG = LoggerFactory.getLogger(AuthorizerService.class);
     @Autowired
     private TransactionRepository transactionRepository;
     @Autowired
@@ -43,8 +46,9 @@ public class TransactionService {
         var walletPayee = walletRepository.findById(transaction.getPayee()).get();
         walletRepository.save(walletPayer.debit(transaction.getValue()));
         walletRepository.save(walletPayee.credit(transaction.getValue()));
-        // 4 - Chamar serviços validadores externos
+        // 4 - CAlling extern authorization services
         authorizerService.authorize(transaction);
+        LOG.info("Passou dos serviços de autorização");
         return transaction;
     }
 
@@ -52,20 +56,27 @@ public class TransactionService {
     private void validate(Transaction transaction) {
         walletRepository.findById(transaction.getPayee())
                 .map(payee -> walletRepository.findById(transaction.getPayer())
-                        .map(payer -> isTransactionValid(transaction,payer) ? transaction : null)
+                        .map(payer -> isTransactionValid(transaction, payer) ? transaction : null)
                         .orElseThrow(() -> new InvalidTransactionException(
                                 "Invalid Transaction - %s".formatted(transaction))))
                 .orElseThrow(() -> new InvalidTransactionException(
                         "Invalid Transaction (Payee not found) - %s".formatted(transaction)));
     }
-    private boolean isTransactionValid(Transaction transaction,Wallet payer){
+
+    private boolean isTransactionValid(Transaction transaction, Wallet payer) {
         return payer.type() == WalletType.COMMON.getValue() &&
-        payer.balance().compareTo(transaction.getValue()) >= 0 &&
-        !payer.id().equals(transaction.getPayee());
+                payer.balance().compareTo(transaction.getValue()) >= 0 &&
+                !payer.id().equals(transaction.getPayee());
     }
 
     public List<Transaction> list() {
         Long userId = getCurrentUserId();
         return transactionRepository.findByUserId(userId);
+    }
+
+    public void deleteAll() {
+        Long userId = getCurrentUserId();
+        transactionRepository.deleteAllByUserId(userId);
+
     }
 }
